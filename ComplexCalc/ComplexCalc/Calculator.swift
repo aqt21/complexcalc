@@ -117,7 +117,15 @@ class Calculator {
         return total / nums.count
     }
     
-    static func mathOp(lhs: Int, rhs: Int, op: String ) -> Int {
-        return (lhs + rhs)
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+    
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        var total : Int = beg
+        for i in 0 ... args.count - 1 {
+            total = op(total, args[i])
+        }
+        return total
     }
 }
